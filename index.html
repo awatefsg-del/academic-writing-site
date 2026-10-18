@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#1e3a5f">
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon-180.png">
+<title>الكتابة الأكاديمية — مبادئ وارشادات</title>
+<meta name="description" content="دليل مبادئ وارشادات الكتابة الأكاديمية للطالب الجامعي — خصائصها، متطلباتها اللغوية، وعلاقتها بالتفكير والبحث العلمي.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800;900&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --primary:#1e3a5f;
+    --primary-2:#2c5282;
+    --accent:#c9a227;
+    --accent-2:#e6c34a;
+    --bg:#f4f6fa;
+    --card:#ffffff;
+    --text:#1f2937;
+    --muted:#5b6472;
+    --border:#e2e8f0;
+    --shadow:0 10px 30px rgba(30,58,95,.08);
+    --radius:16px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:'Tajawal',system-ui,sans-serif;
+    background:var(--bg);
+    color:var(--text);
+    line-height:1.9;
+    font-size:18px;
+    direction:rtl;
+  }
+  a{color:var(--primary-2);text-decoration:none}
+  a:hover{color:var(--accent)}
+
+  /* Header */
+  .topbar{
+    position:sticky;top:0;z-index:50;
+    background:rgba(255,255,255,.92);
+    backdrop-filter:blur(12px);
+    border-bottom:1px solid var(--border);
+  }
+  .topbar-inner{
+    max-width:1200px;margin:0 auto;
+    display:flex;align-items:center;justify-content:space-between;
+    padding:14px 24px;gap:16px;
+  }
+  .brand{display:flex;align-items:center;gap:12px;font-weight:800;font-size:20px;color:var(--primary)}
+  .brand .logo{
+    width:40px;height:40px;border-radius:10px;
+    background:linear-gradient(135deg,var(--primary),var(--primary-2));
+    color:#fff;display:grid;place-items:center;font-size:20px;font-weight:900;
+    box-shadow:0 4px 12px rgba(30,58,95,.3);
+  }
+  .nav{display:flex;gap:6px;flex-wrap:wrap}
+  .nav a{
+    padding:8px 14px;border-radius:999px;font-size:15px;font-weight:500;
+    color:var(--muted);transition:.2s;
+  }
+  .nav a:hover,.nav a.active{background:var(--primary);color:#fff}
+  .menu-btn{display:none;background:none;border:none;font-size:24px;cursor:pointer;color:var(--primary)}
+
+  /* Hero */
+  .hero{
+    background:linear-gradient(135deg,var(--primary) 0%,#3a6ea5 60%,#5a8fc4 100%);
+    color:#fff;padding:80px 24px 100px;position:relative;overflow:hidden;
+  }
+  .hero::before{
+    content:"";position:absolute;inset:0;
+    background:radial-gradient(circle at 80% 20%,rgba(201,162,39,.25),transparent 50%),
+              radial-gradient(circle at 10% 80%,rgba(255,255,255,.08),transparent 40%);
+  }
+  .hero-inner{max-width:900px;margin:0 auto;position:relative;text-align:center}
+  .hero .eyebrow{
+    display:inline-block;padding:6px 16px;border-radius:999px;
+    background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);
+    font-size:14px;font-weight:500;margin-bottom:24px;backdrop-filter:blur(6px);
+  }
+  .hero h1{
+    font-family:'Amiri',serif;font-size:52px;font-weight:700;line-height:1.3;
+    margin-bottom:16px;text-shadow:0 2px 12px rgba(0,0,0,.2);
+  }
+  .hero .subtitle{font-size:20px;opacity:.92;max-width:700px;margin:0 auto 32px;line-height:1.8}
+  .hero .meta{display:flex;justify-content:center;gap:24px;flex-wrap:wrap;font-size:15px;opacity:.85}
+  .hero .meta span{display:flex;align-items:center;gap:6px}
+  .hero-wave{position:absolute;bottom:0;left:0;right:0;height:60px}
+  .hero-wave svg{width:100%;height:100%;display:block}
+
+  /* Layout */
+  .container{max-width:1200px;margin:0 auto;padding:0 24px}
+  .layout{display:grid;grid-template-columns:260px 1fr;gap:32px;max-width:1200px;margin:0 auto;padding:40px 24px}
+
+  /* Sidebar TOC */
+  .sidebar{position:sticky;top:90px;align-self:start}
+  .toc{
+    background:var(--card);border-radius:var(--radius);padding:20px;
+    box-shadow:var(--shadow);border:1px solid var(--border);
+  }
+  .toc h3{font-size:16px;color:var(--primary);margin-bottom:12px;padding-bottom:8px;border-bottom:2px solid var(--accent)}
+  .toc ul{list-style:none}
+  .toc li{margin-bottom:4px}
+  .toc a{
+    display:block;padding:8px 12px;border-radius:8px;font-size:14px;
+    color:var(--muted);transition:.15s;border-right:3px solid transparent;
+  }
+  .toc a:hover,.toc a.active{background:#eef3fa;color:var(--primary);border-color:var(--accent)}
+
+  /* Content */
+  .content{min-width:0}
+  .section{
+    background:var(--card);border-radius:var(--radius);padding:40px;
+    box-shadow:var(--shadow);border:1px solid var(--border);
+    margin-bottom:28px;scroll-margin-top:100px;
+  }
+  .section h2{
+    font-family:'Amiri',serif;font-size:32px;color:var(--primary);
+    margin-bottom:8px;padding-bottom:12px;border-bottom:2px solid var(--accent);
+    display:flex;align-items:center;gap:12px;
+  }
+  .section h2 .num{
+    background:var(--primary);color:#fff;width:40px;height:40px;border-radius:10px;
+    display:grid;place-items:center;font-size:18px;font-weight:800;flex-shrink:0;
+  }
+  .section h3{
+    font-size:22px;color:var(--primary-2);margin:28px 0 12px;
+    padding-right:14px;border-right:4px solid var(--accent);
+  }
+  .section p{margin-bottom:16px;text-align:justify}
+  .section ul,.section ol{margin:12px 0 20px;padding-right:24px}
+  .section li{margin-bottom:8px}
+  .section .lead{font-size:19px;color:var(--muted);margin-bottom:20px}
+
+  /* Cards grid */
+  .cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px;margin:20px 0}
+  .card{
+    background:linear-gradient(180deg,#fff,#f8fafc);
+    border:1px solid var(--border);border-radius:12px;padding:20px;
+    transition:.2s;position:relative;overflow:hidden;
+  }
+  .card:hover{transform:translateY(-4px);box-shadow:0 12px 24px rgba(30,58,95,.12);border-color:var(--accent)}
+  .card .icon{
+    width:44px;height:44px;border-radius:10px;background:var(--primary);
+    color:#fff;display:grid;place-items:center;font-size:20px;margin-bottom:12px;
+  }
+  .card h4{font-size:17px;color:var(--primary);margin-bottom:6px}
+  .card p{font-size:15px;color:var(--muted);margin:0;line-height:1.7;text-align:right}
+
+  /* Characteristic list */
+  .char-item{
+    display:grid;grid-template-columns:56px 1fr;gap:16px;
+    padding:18px;border-radius:12px;background:#f8fafc;border:1px solid var(--border);
+    margin-bottom:12px;transition:.2s;
+  }
+  .char-item:hover{background:#eef3fa;border-color:var(--primary-2)}
+  .char-item .n{
+    width:56px;height:56px;border-radius:12px;
+    background:linear-gradient(135deg,var(--primary),var(--primary-2));
+    color:#fff;display:grid;place-items:center;font-size:20px;font-weight:800;
+  }
+  .char-item h4{font-size:18px;color:var(--primary);margin-bottom:4px}
+  .char-item p{font-size:16px;color:var(--text);margin:0;line-height:1.8}
+
+  /* Quote */
+  .quote{
+    border-right:4px solid var(--accent);background:#fdf8e7;
+    padding:20px 24px;border-radius:12px;margin:20px 0;
+    font-family:'Amiri',serif;font-size:20px;color:var(--primary);
+  }
+  .quote cite{display:block;margin-top:8px;font-size:14px;color:var(--muted);font-family:'Tajawal',sans-serif}
+
+  /* Footer */
+  footer{
+    background:var(--primary);color:#fff;padding:40px 24px;margin-top:40px;
+  }
+  .footer-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:24px}
+  footer h4{color:var(--accent-2);margin-bottom:10px}
+  footer p{opacity:.85;font-size:15px;line-height:1.8}
+
+  /* Responsive */
+  @media (max-width:900px){
+    .layout{grid-template-columns:1fr;padding:20px 16px}
+    .sidebar{position:static}
+    .hero h1{font-size:36px}
+    .section{padding:24px}
+    .nav{display:none}
+    .menu-btn{display:block}
+    .nav.open{display:flex;flex-direction:column;position:absolute;top:60px;right:16px;left:16px;background:#fff;padding:12px;border-radius:12px;box-shadow:var(--shadow)}
+    .footer-inner{grid-template-columns:1fr}
+  }
+
+  /* Back to top */
+  .to-top{
+    position:fixed;bottom:24px;left:24px;width:44px;height:44px;
+    background:var(--primary);color:#fff;border:none;border-radius:50%;
+    font-size:20px;cursor:pointer;box-shadow:0 6px 16px rgba(0,0,0,.2);
+    opacity:0;pointer-events:none;transition:.3s;z-index:40;
+  }
+  .to-top.show{opacity:1;pointer-events:auto}
+
+  .divider{height:1px;background:var(--border);margin:20px 0}
+  .badge{display:inline-block;padding:3px 10px;border-radius:999px;background:#eef3fa;color:var(--primary);font-size:13px;font-weight:600;margin-left:6px}
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <div class="brand">
+      <div class="logo">ك</div>
+      <span>الكتابة الأكاديمية</span>
+    </div>
+    <button class="menu-btn" onclick="document.querySelector('.nav').classList.toggle('open')">☰</button>
+    <nav class="nav">
+      <a href="#intro">مقدمة</a>
+      <a href="#problem">المشكلة</a>
+      <a href="#terms">المصطلحات</a>
+      <a href="#chars">الخصائص</a>
+      <a href="#lang">اللغة والتفكير</a>
+      <a href="#reqs">المتطلبات</a>
+      <a href="#concl">الاستنتاجات</a>
+      <a href="quiz.html" target="_blank" rel="noopener" class="active">أسئلة</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="hero-inner">
+    <span class="eyebrow">دليل مبادئ وارشادات</span>
+    <h1>الكتابة الأكاديمية</h1>
+    <p class="subtitle">خصائصها، متطلباتها اللغوية، وعلاقتها بالتفكير والبحث العلمي — دليل شامل للطالب الجامعي والباحث.</p>
+    <div class="meta">
+      <span>✍️ د. سعد بن علي الشهري</span>
+      <span>🏛️ جامعة نايف العربية للعلوم الأمنية</span>
+      <span>📚 كلية الدراسات العليا</span>
+    </div>
+  </div>
+  <div class="hero-wave">
+    <svg viewBox="0 0 1440 60" preserveAspectRatio="none"><path d="M0,30 C240,60 480,0 720,30 C960,60 1200,0 1440,30 L1440,60 L0,60 Z" fill="#f4f6fa"/></svg>
+  </div>
+</section>
+
+<div class="layout">
+  <aside class="sidebar">
+    <nav class="toc">
+      <h3>المحتويات</h3>
+      <ul>
+        <li><a href="#intro">١. المقدمة</a></li>
+        <li><a href="#problem">٢. مشكلة البحث</a></li>
+        <li><a href="#terms">٣. المصطلحات</a></li>
+        <li><a href="#chars">٤. خصائص الكتابة</a></li>
+        <li><a href="#lang">٥. اللغة والتفكير</a></li>
+        <li><a href="#reqs">٦. المتطلبات اللغوية</a></li>
+        <li><a href="#concl">٧. الاستنتاجات</a></li>
+        <li><a href="#recom">٨. التوصيات</a></li>
+        <li><a href="#refs">٩. المراجع</a></li>
+      </ul>
+    </nav>
+  </aside>
+
+  <main class="content">
+
+    <!-- 1 Intro -->
+    <section class="section" id="intro">
+      <h2><span class="num">١</span> المقدمة</h2>
+      <p class="lead">الحمد لله الذي علم بالقلم، علم الإنسان ما لم يعلم، وبعد: فإن للكتابة أهميتها في مناحٍ شتى من الحياة، وإذ لم يعلم ما هي، حتى أن بداية (التدوين) الكتابة تعتبر نقطة فاصلة، أمتلك الإنسان أدواتها الأولى منذ أن أمتلك اللغة كونها من أهميتها في التاريخ الإنساني، وتجعلها معبِّراً أول عن الإنسان والأفراد والناس.</p>
+      <p>وقد يكون عنوان هذا البحث مثيراً لبعض التساؤلات، حول حضارات وأمم ومجتمعات. والحقيقة أن البحث ليس لغوياً فحسب، أليس هو بحث في مناهج البحث أم في اللغة؟ طبيعته. ولأن الباحث ليس متخصصاً في علوم اللغة واللسانيات ولا في منطق التفكير، كان مهتماً بها، وإذ كانت هي فرسانها وعلماؤها ومفكروها في الحقول العلمية.</p>
+      <p>هذا البحث يتناول خصائص الكتابة الأكاديمية ومتطلباتها اللغوية فحسب، من حيث محاولة إدراكها وامتلاكها كخدمة ممارسة فكرية ومنهجية. وهو أمر ضروري جداً لطلاب الدراسات العليا والباحثين والعاملين في مؤسسات التعليم العالي، إذ تؤثر هذه المتطلبات والمهارات ذات الطابع اللغوي في جودة المادة المكتوبة مباشرة في مراكز البحث العلمي والجامعات، وتؤثر في مدى قبولها ومعايير النشر الأكاديمي.</p>
+      <p>تبدأ هذه الورقة بوصف الإشكالية البحثية، ثم تركز على خصائص الكتابة الأكاديمية بإيجاز، وتعرض الأسئلة التي تحاول الإجابة عليها، وتختتم باستنتاجات وتوصيات.</p>
+      <div class="quote">
+        «الكتابة الأكاديمية هي كتابة done by Scholars for other scholars»
+        <cite>— Dartmouth Writing Program</cite>
+      </div>
+    </section>
+
+    <!-- 2 Problem -->
+    <section class="section" id="problem">
+      <h2><span class="num">٢</span> مشكلة البحث وتساؤلاته</h2>
+      <p>إذا كانت القدرات والمهارات اللغوية من أهميتها القصوى في حياة الإنسان، فإن هذه المهارات والقدرات تكتسب قدرًا أكبر من الأهمية عندما يكون الإنسان معبِّراً عن شخصيته وحضوره وتفاعلاته مع ما حوله. ولطلاب الجامعيين أهمية لأعمالهم، وللأكاديميين والمتخصصين والباحثين في الدراسات العليا، ما تنبثق منه خصوصية الكفاءة والقدرة العالية والمستوى العلمي التي يجب أن يصِلوا إليها لإنتاجهم الفكري.</p>
+      <p>وقد لاحظ الباحث أن كثيراً ممن ينتمون إلى عالم الأكاديمية، وربما يشاركه كثير، أن هناك ضعفاً في جودة البحوث والرسائل والأطروحات العلمية في مؤسسات التعليم العالي، وهذا الضعف قد يمثل ظاهرة. ولا شك أن هذا الضعف قد يردّ إلى ضعف المهارات والقدرات اللغوية، ومن عوامل (اجتماعية) بمعنى طرائقي، ولا تفسَّر هذه الظواهر بعامل واحد، بل بعدة عوامل، ولذلك فإن هذه الورقة تفترض أن ضعف المهارات والقدرات اللغوية قد يكون عاملاً من العوامل المفسرة لانخفاض جودة البحث العلمي في بعض الحالات، بل قد يكون العامل الأهم.</p>
+      <p>من جهة أخرى، يعتمد البحث العلمي على القدرة والمهارة في التفكير، خاصة التفكير النقدي، الذي يتطلب مستوى من المهارات والقدرات اللغوية والتخزين والمعالجة. واللغة هي الحامل والقالب لأفكاره، ولا يمكن فصل المحتوى المعرفي عن البناء والتكوين. وقد اهتم كثير من المفكرين وعلماء اللغة واللسانيات والمؤسسات التعليمية (٢٠٠٨). تعطي الأكاديمية والأعراف والأدلة والقواعد محتوى من كبيراً من الأهمية. نفس قدر البحث العلمي لمناهجه (The Chicago Manual of Style, 16th Edition).</p>
+      <p>تجعل العلاقة بين القدرات والمهارات اللغوية والكتابة الأكاديمية، التي تطلب التفكير النقدي للبحث العلمي، من الضروري جداً عدم تغفل أو تقليل أهميتها. وبهذا تبحث هذه الورقة في الإشكالية المتعلقة بهذه العلاقة التلازمية، حيث طبيعتها وأهميتها، بالتركيز على خصائص الكتابة الأكاديمية ومتطلباتها اللغوية مستفيداً من الأدبيات والمصادر المعرفية المتوفرة.</p>
+      <p><strong>تساؤلات البحث:</strong></p>
+      <ol>
+        <li>ما خصائص الكتابة الأكاديمية؟</li>
+        <li>ما طبيعة العلاقة بين اللغة والتفكير والبحث العلمي؟</li>
+        <li>ما متطلبات الكتابة الأكاديمية اللغوية؟</li>
+      </ol>
+    </section>
+
+    <!-- 3 Terms -->
+    <section class="section" id="terms">
+      <h2><span class="num">٣</span> مصطلحات البحث</h2>
+      <p>يتناول هذا البحث العلاقة بين المهارات والقدرات في ثلاثة حقول معرفية: اللغة (Linguistics) والتفكير (Thinking) والبحث العلمي (Scientific Research). هذه الحقول المعرفية الثلاثة تزخر كثيراً بالمصطلحات والمفاهيم، ولا بد من استعراض ولو القليل منها في سياق هذا البحث، ولذلك سيتم تعريف المصطلحات والمفاهيم الرئيسية في ثلاثة حقول، مع اعتراف الباحث بقصوره في صياغة التعاريف.</p>
+
+      <h3>٣-١. اللغة</h3>
+      <p>تُعرَّف اللغة حسب الموسوعة البريطانية (Ideas): «اللغة كلام بأصوات (Speech-Sounds) تُكوِّن جملاً تحمل مواد فكرية (Thought)». كما تعرف Language skills بأنها القدرات والمهارات التي يستخدمها الإنسان للتواصل والتعلم والتفاعل، نظام عقلي ونفسي معقد في نفس الوقت، بسيط ومعقد، في الاستماع والكتابة والقراءة. وتتمثل في الرموز والعلامات والتركيبات والمعاني والدلالات (http://uqu.edu.sa/page/ar/138867).</p>
+      <p>ويقصد في هذا البحث باللغة: الطبيعة اللغوية ومكوناتها: أَلفاظاً وعبارات ونصوصاً وأساليباً وصياغة، في البحوث الأكاديمية المكتوبة.</p>
+
+      <h3>٣-٢. الكتابة الأكاديمية</h3>
+      <p>تُعرَّف الكتابة الأكاديمية بأنها أسلوب لغوي ونسق أسلوب له أدواته وألفاظه وتركيبه وبناؤه ومعانيه ودلالاته، به تُكتب البحوث والدراسات والرسائل والأطروحات والتقارير والملخصات. هذا النوع من الكتابة يُميزها عن أنواع الكتابة الأخرى (Swales et al, 2004).</p>
+
+      <h3>٣-٣. البحث العلمي</h3>
+      <p>يُعرَّف البحث العلمي في هذه الورقة بأنه جهد منظم وعملية منهجية بخطوات وطرق علمية محددة، تهدف إلى جمع المعلومات وتحليلها كمياً وتوثيقها، للوصول إلى استنتاجات موضوعية، أو للوصول إلى إجابات لأسئلة محددة أو حل مشكلات معينة في موضوع محدد، منطقياً وكمياً، قابلة للاختبار (نوفل وأخرون، ٢٠١٠: ١٨١-٥٨١).</p>
+
+      <h3>٣-٤. التفكير</h3>
+      <p>التفكير هو الوظيفة الرئيسية للعقل، إعمال تفكيراً، فكَّر يُفَكِّر. وهناك تعاريف اصطلاحية كثيرة فيه، إذ يُعلَم ما أمر في ترتيب المجهول إلى الوصول. ولذلك يحار الباحث في المفاضلة بينها، إذ هناك أنواع واصناف متعددة من التفكير، تُدرج تحت صنفين أساسيين: التفكير الموجَّه، والتفكير النقدي (الذي بدوره ينقسم إلى أنواع متعددة). ولأغراض هذه الورقة، يمكن تصنيف أنواع التفكير إلى: إبداعي، وآخر. التفكير النقدي «يتضمن مجموعة من العمليات العقلية التي يوظفها المتعلمون لحل المشكلات، وصنع القرارات، وتعلم مفاهيم جديدة» (٢٦).</p>
+    </section>
+
+    <!-- 4 Chars -->
+    <section class="section" id="chars">
+      <h2><span class="num">٤</span> خصائص الكتابة الأكاديمية</h2>
+      <p class="lead">تُعرَّف الكتابة الأكاديمية بأنها كتابة العلماء (Scholars) أو كتابة العلماء للزملاء والمتخصصين. «Academic writing is writing done by Scholars for other scholars» (Dartmouth, Writing Program).</p>
+      <p>كما تُعرَّف بأنها أسلوب خاص مميز للمؤسسات الأكاديمية — أسلوب يستخدمه طلاب الجامعات والدراسات العليا والمحاضرون عندما يستكشفون أسئلة أكاديمية محددة في المقالات والأطروحات ورسائل الدكتوراه والأوراق الأكاديمية (Waylink English).</p>
+      <p>ومن أنواع الكتابة الأكاديمية الأهم: رسائل الماجستير والدكتوراه، وأيضاً البحوث والمقالات، والملخصات، والمقالات النقدية للكتب، والمقالات العلمية، والملخصات، والببليوغرافيا المشروحة (Annotated Bibliography)، ومراجعات الأدب (Review of Literature)، والدراسات المقارنة والتاريخية (Comparative and Historical Studies)، والتقارير المختبرية (Lab Reports)، والملخصات العلمية (Abstracts) (Way link english).</p>
+      <p>إن أسلوبها (اللغوي) وصياغتها ومعالجتها (Linguistic processing) عامل مهم جداً ومتطلب لجودة المادة المكتوبة، ومعيار للحكم على جودة البحوث ومصداقيتها وفائدتها وجدية الأبحاث في الأوساط العلمية. فلغة البحث، خاصة، تطلب بناءها وترتيبها وسياقاتها وعباراتها ومعانيها دقة ووضوحاً، والكتابة الأكاديمية عمل جاد مكثف المعنى (Meaning intensive) للقراء والجمهور، ولمنهجه والمعنى.</p>
+      <p>تُحكم characteristics الأكاديمية ومقاييسها العلمية، ضمناً أو صراحة، حكماً مجازاً (Waylink). وأهمها من حيث الخصائص اللغوية:</p>
+
+      <div class="char-item"><div class="n">١</div><div><h4>الموضوعية (Objectivity)</h4><p>يجب ألا تحتوي كتابة الأكاديمية على لغة عاطفية أو شخصية، بل موضوعية، وإلا أُخذ الكاتب على ما هو فيه. والكتابة الأكاديمية تركز على التحليل وال interpretation وال synthesis وال conclusion موضوعياً. «يجب أن توصف الكتابة الأكاديمية بأنها "لغة لا" — أي بأسلوب لفهم الظواهر ومناقشتها دون مقدمات تحليلية تمهِّد وتؤيد الاستنتاجات والتوصيات». ليست آراء وأحكام نهائية، بل جهد الكاتب وخلاصة، وليس مقولات وخواتيم تُبنى على سند علمي، بل استنتاج واستخلاص وسبب منهج من خلال الكاتب.</p></div></div>
+
+      <div class="char-item"><div class="n">٢</div><div><h4>المسؤولية (Responsibility)</h4><p>سواء كانت كتابة البحث أو النص عن مسؤولية الكاتب علمية ومسؤولة، فإن الباحث والأكاديمي وطالب العلم إحساس بمسؤوليته. والبحث يتطلب جدية في القراءة المعمقة في موضوعه ومناقشته مع الأوساط العلمية والباحثين، إيماناً بأمانة وأخلاق طلاب العلم، وإثبات التوثيق مع المصداقية والنزاهة، وقبول الت نقد وتبعات اجتهاده، وتوثيق حقائق وأفكار في بحثه وعزوها لأهلها ومصادرها.</p></div></div>
+
+      <div class="char-item"><div class="n">٣</div><div><h4>الوضوح (Explicitness)</h4><p>الكتابة الأكاديمية صريحة — سياق النص وأفكاره وتسلسلها، ومنطقياً وواضحة، هي مسؤولية الكاتب تجاه نفسه وقرائه. باستخدام كل أدوات اللغة، كل أجزاء البحث مرتبطة في سياق منطقي وموضوعي محكم، لجعل المادة المكتوبة مفهومة ومتماسكة ومقبولة في الدوائر العلمية.</p></div></div>
+
+      <div class="char-item"><div class="n">٤</div><div><h4>الدقة (Precision)</h4><p>اللغة الأكاديمية تستخدم التراث العلمي ومقالات الحقول المعرفية ومعرفتها. ولذلك يجب أن تكون دقيقة وکاملة في عرض التواريخ والأرقام والحقائق والنظريات، وأن تكون صحيحة ودقيقة فيما يتناوله، وبناؤه وصياغته وأسلوبه. ولأن الكتابة الأكاديمية واضحة ودقيقة، يجب على القارئ أن يضع حدوداً (لدرجة) عندما يصف ما أهملوه أو وصفوه خارج إطار بحثهم.</p></div></div>
+
+      <div class="char-item"><div class="n">٥</div><div><h4>العقلانية (Rationality)</h4><p>لغة البحث العلمي قائمة على المنطق العقلاني، وإثبات الحجة وتقديم البراهين والإقناع. وأي ضعف منطقي أو غموض أو خروج عن سياق البحث ومنهجيته يؤدي إلى حكم سلبي على الباحث، بل قد يرفض نشره في الدوائر العلمية والقنوات الأكاديمية للنشر.</p></div></div>
+
+      <div class="char-item"><div class="n">٦</div><div><h4>الرسمية (Formality)</h4><p>تطلب الكتابة الأكاديمية أسلوباً لغوياً «لا» للأنا، ولا للتعظيم للذات، ولا للتعبير الشخصي المباشر، ولا للهجات ولا للكلمات العامية. وأسلوبها (اللغوي) يماثل الزي الرسمي في الأعياد والمناسبات. وأهمية الكتابة الأكاديمية لا تقل عن الرسمية، إذ إنها قانونية. ولذلك لا تستخدم عبارات وأفعال تشير إلى موضوع على منصب مباشرة، بل في سياق غير مباشر. وعلى الرغم من ذلك، عندما تثبت نقطة معينة من موقفه، يكون النص حاضراً ومؤثراً في سياقه (اللغوي والمنهجي).</p></div></div>
+
+      <div class="char-item"><div class="n">٧</div><div><h4>القوة (Strength)</h4><p>قوة النص الأكاديمي تدل على عمق التفكير وقوة اللغة ورجاحة الفكر والثقافة. وهذا يجعل مرسله (الكاتب) ومتلقيه (القارئ) يختلف ويتحاور ويحكم عليه، فيقبله (رسالة قوية). بعكس النصوص ذات اللغة الضعيفة، يعزف القارئ عن الاهتمام بها.</p></div></div>
+
+      <div class="char-item"><div class="n">٨</div><div><h4>الكثافة والتعقيد (Complexity and Density)</h4><p>اللغة الأكاديمية مكثفة ومتعددة — مفاهيم ومصطلحات وألفاظ وتركيبات وجمل معقدة، ونظريات ونصوص وعبارات معقدة ومتعددة، لا يتمكن من فهمها إلا المتعلم (http://www.uefap.com/writing/features/featfram.htm).</p></div></div>
+
+      <div class="char-item"><div class="n">٩</div><div><h4>السلامة اللغوية (Faultlessness)</h4><p>البحث الجاد، العلمي، خالٍ من الأخطاء اللغوية — اختيار الألفاظ في اللغة، وسلامة المعاني والدلالات، وسياقات البحث، وسلامة تركيب الجمل والعنوان. حتى يكون النص حاملاً أميناً وحاوياً، حتى للParagraphs، وببناء وقواعد نحوية صحيحة، والكلمات (ألفاظ) تؤثر سلباً وإيجاباً على شخصية الباحث وسياق البحث (الكلّي والجزئي). ولذلك يمضي الكاتب الجيد وقتاً وجهداً — من العنوان حتى آخر كلمة — في صياغة الأسلوب والتصحيح والتعديل والحذف والإضافة، وتصحيح الأسلوب، والعنونة والتصنيف والترقيم والتوثيق، وطرق الربط، وكتابة المراجع والتوثيق، وطريقة الطباعة — جميع أجزاء البحث.</p></div></div>
+
+      <div class="char-item"><div class="n">١٠</div><div><h4>الحذر (Hedging)</h4><p>لا تستخدم لغة الأكاديمية عبارات ولا كلمات قاطعة ولا تأكيدية ولا ادعائية. وعندما لا يمكن تأكيد أو توثيق أو قطع الأمر، فإن سياق أو الأمر يتطلب موقفاً من الكاتب. باستخدام لغة بقوة تتناسب مع الأشياء ورأيه وموقفه، ولكن بأسلوب (لغة) مناسب. وبعد تأسيسه على الحقائق، والمنهجيات والاستنتاجات العلمية، بأسلوب وصياغة وألفاظ مناسبة، (لغة) موضوعية (غير ذاتية).</p></div></div>
+
+      <div class="char-item"><div class="n">١١</div><div><h4>عدم السخرية (Non-Sarcastic)</h4><p>الكتابة الأكاديمية ليست مقبولة بالسخرية من الأشخاص أو أعمالهم أو مواقفهم، أو من الأشخاص الذين لا يتفق معهم النص الذي يكتبه الأكاديمي. واللغة (لغة) والمعاني والدلالات وأساليباً وألفاظاً راقية هي التي يجب استخدامها.</p></div></div>
+
+      <div class="char-item"><div class="n">١٢</div><div><h4>عدم الانحياز (Non-Biased)</h4><p>الانحياز لأساب ذا تية أو شخصية أو حضارية أو قيمية يعتبر أساساً غير عقلاني — مرفوضاً وغير مقبول في الكتابة الأكاديمية، وموقف الكاتب ورأيه.</p></div></div>
+
+      <div class="char-item"><div class="n">١٣</div><div><h4>التنظيم (Organization)</h4><p>الكتابة الأكاديمية منظمة — تسمح للقارئ أن يفهم فكر الكاتب ويتابعه منطقياً. وهناك مقدمة أو مدخل، وهناك جوهر البحث، وهناك خاتمة، وهناك عناوين رئيسية وأخرى فرعية، وأيضاً إشارات وعلامات للتوثيق، والربط، والترقيم، وغيرها مما تتطلبه الأعمال العلمية المكتوبة (http://www.2.elc.polyu.edu.hk/CILL/comstud1/Acadwrit.htm).</p></div></div>
+    </section>
+
+    <!-- 5 Lang -->
+    <section class="section" id="lang">
+      <h2><span class="num">٥</span> اللغة والتفكير والبحث العلمي</h2>
+      <p>يُفترض في هذا العنوان أن هناك علاقة بين هذه الأنشطة (الثلاثة الرئيسية)، وهي معرفية واسعة ومتداخلة مع كثير من حقول معرفية أخرى، ومن الصعب والمستحيل التوسع في الموضوع أو الدخول كثيراً في الأدبيات والعلاقات والنظريات، والتركيز على طبيعة العلاقة (القوية جداً) بين اللغة والتفكير والبحث العلمي — أدواتها (اللغوية) وفي طرقها ووسائطها المكتوبة.</p>
+      <p>إذا قبلنا أن اللغة كلمات ورموز، يدركها الإنسان بعقله، دلالات. وإذا أدركنا أن التفكير (مدخلات) — استقبال عقلي من خلال الحواس (قراءة، استماع، ملاحظة، فهم) — هي مدخلات للغة. وأحد أهم مخرجات التفكير والتفاعل (للباحث) هي لغة البحث العلمي، أداةه. السؤال المطروح: هل يستطيع الإنسان أن يفكر بدون لغة؟ وهل مخرجات التفكير ممكنة بدون لغة؟ وهل تؤثر قوة وضعف اللغة في تفكيره؟</p>
+      <p>الإجابة على السؤالين الأولين: نعم، وعلى السؤال الأخير: بال否定. عندما يمتلك الإنسان لغتين، قوية وضعيفة، يفكر وينتج أبحاثه باللغة (الأقوى) — evidence (لذلك، هي الوسيلة الرئيسية (مدخلاته ومخرجاته) للتفكير (النشاط الفكري الأساسي) للبحث العلمي. ومدخلاته ومخرجاته (في نفس الوقت) هي للغة (أساساً).</p>
+      <p>اللغة (المسموعة، المنطوقة أو المقروءة) بدورها تشكل قالب التفكير (للفكر). والتفكير (عملية واحدة) — قوة ومستوى (التفكير الحسي) و (التفكير التجريدي) وراء الحساسات — يعتمدان على قوة اللغة وثراء كلماتها ودلالاتها. والأمر نفسه ينطبق على جميع الحقول (العلمي، البحث على). واللغة رابط مهم ووسيلة رئيسية في العمليات العقلية وفي التفكير السلس. ومخرج التفكير (output) هو نتاج (output) important ومخرج (البحث العلمي).</p>
+      <p>«العلاقة» (كما تصورها أدناه — شكل ١):</p>
+      <div class="quote">
+        «هذه الأنشطة (الثلاثة) متلازمة — متلازمة بقوة (اللحم) — أي ضعف أو قوة في أي من المتغيرات، ينعكس ضعف أو قوة في المتغيرات (الأخرى)، وأي تغيير في المتغيرين أو (الآخر) يتأثر (لأن كل من المتغيرات (الثلاثة) طردية — سبب ونتيجة — كل من المتغيرات (الأخرى) في نفس الاتجاه، ويؤثر على (الثالث)».
+      </div>
+      <p>شكل ١ — العلاقة بين مهارات وقدرات اللغة والتفكير والبحث العلمي (ثلاثة متشابكة: اللغة، التفكير، البحث العلمي).</p>
+    </section>
+
+    <!-- 6 Reqs -->
+    <section class="section" id="reqs">
+      <h2><span class="num">٦</span> المتطلبات اللغوية للكتابة الأكاديمية</h2>
+      <p class="lead">من خصائص الكتابة الأكاديمية وأهميتها، لا شك أن هناك اشتراكاً بين المهارات والقدرات اللغوية ومستواها. والفرق بين أنواع الكتابة linguistic skills level. والكتابة الأكاديمية linguistic side — والمنطق والقوة، والبناء والقوة linguistic، واللغة العلمية.</p>
+      <p>تُفترض متطلبات الكتابة الأكاديمية (قبل الخوض في خصائصها) — وظائف للغة (Academic Writing):</p>
+      <ul>
+        <li>تعبيرية ونفسية: تمكين الإنسان من التعبير عن رؤاه وعواطفه — تنفس في نفس الوقت — وانفعالات النفس (الفرح والحزن والضغط).</li>
+        <li>تواصلية وإخبارية: تواصل وإرسال وإخبار — كل ما هو خارج الذات.</li>
+        <li>تحليلية وتقييمية: كشف وإظهار طبيعة الأشياء والعلاقات والآثار، والأسباب والنتائج (الوقائع والمحتملة).</li>
+        <li>إبداعية وثقافية: التفكير والتأمل والتخيل — إذا أخرج الإنسان المبدع نشاطاً (مكتوباً أو منطوقاً) — فذلك عمل (أدبي أو علمي أو فني).</li>
+        <li>تفاعلية وتفاهمية: التفاعل مع ما هو خارج الذات، واتخاذ المواقف والتصالح والاختلاف.</li>
+        <li>تعليمية وإقناعية: التعلم والتعليم — الاستفادة من المعرفة والتعليم from all sources.</li>
+        <li>وصفية: وصف ما يدركه الإنسان بحواسه وإعادة تمثيله.</li>
+        <li>مرجعية: تخزين المعلومات (الأفكار والتراث والنظريات والعلوم والأحداث التاريخية) في حكمها.</li>
+        <li>توثيقية وإجرائية: تدوين الوقائع، وتنظيمها وتوثيقها، وتحديد خطوات الإجراءات، والحقوق والواجبات والالتزامات وتسلسل الأحداث في حكمها.</li>
+        <li>رمزية: تجريدية واختزالية — رموز وكلمات وتعابير في رموز (قوانين كونية وعلائق) وراء الطبيعة، مع دلالات عميقة.</li>
+        <li>نفعية وإنمائية: تحقيق منافعه ومصالحه، ونمو ذاته وتطويرها (وقدراته ومهاراته، ٢٠٠٩ و ٢٠٠٩) (alnoor.se).</li>
+      </ul>
+      <p>ووظائف اللغة these متطلبات linguistic — can be described على النحو التالي:</p>
+
+      <h3>٦-١. المستوى المتقدم للمهارات اللغوية</h3>
+      <p>هناك أربع مهارات لغوية أساسية في اللغة (الإنسان linguistic skills) — تُعتَمَد مهاراته على سلامة الحواس والقدرات العقلية والتفكير، حسب الترتيب المنطقي: التحدث، الإستماع، القراءة، الكتابة. (المهارات الفرعية مكملة متراكمة، تطلبها الأربعة، وما يحدد «فعالية» و «فاعلية» هذه المهارات — مهارات بحث علمي وكتابة — هي (التلقي: القراءة الفعالة، الإستماع الفعال) — (الإرسال: التحدث الفعال، الكتابة الفعالة). (اللغة) (الفاعلية) — (الاستيعاب — الفهم — التفكير النقدي) — (الرسالة — واضحة وقوية ومفهومة ومفهومة (مشتركة) موضوعياً (للمتلقي)).</p>
+      <p>المهارة اللغوية (المكتوب — الإنتاج العلمي والبحث العلمي) هي معيار (للشخصية) — علامة (للجامعات — الأساتذة والباحثين والطلاب) — (أو) (على) (لهم).</p>
+
+      <h3>٦-٢. الاستخدام الصحيح للألفاظ والمفردات</h3>
+      <p>اللغة سِمَاء من بناء (مركَّب) — وحدة أساسية (ألفاظها) وأصولها اللغوية واشتقاقاتها. والمفردات (الأسماء والأفعال والصفات وغيرها) importantly in writing — (الكتابة في — صياغة النص والعنوان — أجزاء البحث — من عنوان البحث ووصف إشكاليته ومدخله، مروراً بجوهر البحث (التحليل والاستدلال) إلى التفسير، والاستنتاجات والتوصيات والنتائج والخاتمة والمراجع والملحقات). اختيار الألفاظ (linguistic characteristics) عامل مهم في جودة النص المكتوب (لقراءة على) — قوته (ألفاظها وكلماتها ومصطلحاتها ومفاهيمها واشتقاقاتها) — (ضعفه).</p>
+
+      <h3>٦-٣. التأكد من سلامة المعاني والدلالات</h3>
+      <p>لكل كلمة أو لفظ (دور ووظيفة في بناء الجملة). if this word/letter carries meaning in itself — then it is possible that any of the following meanings:</p>
+      <ul>
+        <li>معنى لغوي — مصدره معجم لغوي.</li>
+        <li>معنى اصطلاحي (مفهوم) — في أدبيات الحقل المعرفي التي ينتمي إليه المصطلح.</li>
+        <li>معنى إجرائي — مكيَّف لأهداف الباحث وحدوده ومنهجيته.</li>
+        <li>معنى سياق — contributes to the whole text — for a specific topic.</li>
+      </ul>
+      <p>لكل كلمة أو لفظ (معناه حقيقتاً أو مجازياً) — (إذ يمكن أن تتنافى معناها (اللغوي أو الاصطلاحي) — (إذ can be synonyms or approximate). وفي نفس الوقت، can words have multiple meanings/uses for the same word or letter. وإذا انتقلنا من الألفاظ إلى الاشتقاقات والكلمات والمترادفات والدلالات — meaning becomes (partial) in the context of a sentence. والجملة (ألفاظها) — معناها (partial) idea. وإذا انتقلنا من الجمل إلى Paragraphs — (meaning) (أوسع). والجمل (وأجزاء) — (meaning) (النص — التقطيعات linguistic). والنص (بناؤه الداخلي) — (قوة) و (وضوح) (معانيه ودلالاته) — («جعله "رسالة"»). يمكن القول: لكل موضوع or أكاديمي نص or — three meanings:</p>
+      <ul>
+        <li>الأول — المعنى (الذي يقصده الكاتب) — «إخاله» (لغيره) — (وقد ينجح or (درجة) another).</li>
+        <li>الثاني — المعنى (الذي يفهمه (القارئ) المتلقي) — isn't dependent on (المرسل) (قدراته linguistic and فكرية) — (أيضاً dependent on linguistic and فكرية of the المتلقي).</li>
+        <li>الثالث — المعنى (الحقيقي) — (الحقائق) (المكونة للموضوع) — (may be deficient) (بسبب قصور فكرية and لغوية and جهد فكري and علمي).</li>
+      </ul>
+
+      <h3>٦-٤. التراكيب الصحيحة للجمل</h3>
+      <p>على الرغم من أن الكلمات والألفاظ وحدة البناء (الأساسية) في اللغات، على الرغم من that (ألفاظها and دلالاتها and استخدماتها متعددة) — «جملة مفيدة» — (حتى becomes صحيحاً ترکیباً) — (في جملة مرکبة) — (لا comes) في جميع شؤون الحياة. if (context) was (specific) — then (expression) (must be) (consistent) with (the context) (and) (what precedes and follows) — (and) (what is before and after). والجملة (meaning) ( supports) (فرعية) or (شرحية) and (أخرى) (رئيسة) — (الجملة) (meaning) (الذي) (المنطوق) — (and) (بداية) and (نهاية) (لها) — (عادة) (الترقيم) (marks) — (point) (mark).</p>
+
+      <h3>٦-٥. البناء الصحيح للفقرات</h3>
+      <p>الفقرة (مجموعة من الجمل المرتبطة) — (تحمل) (أجزاء) (في context) (أوسع) (فكرة). (الجملة (الرئيسة (Topic Sentence)) — (تحمل) (الفكرة (الرئيسة (Main Idea)) — (في الفقرة). (وهناك) (جملة) (افتتاحية) and (ربما) (تمهيدية) and (أخرى) (رئيسة) and (فرعية) and (اختتامية). (أدوات) (and) (ترقيم) (marks) (between) (الجمل) (في) (الفقرة) (الواحدة) (تجعل) (بناء) (and) (ترتيب) (الجمل) (more) (تماسكاً) and (دقة) and (أمانة) for the whole idea (and meaning) of the paragraph. (الترتيب (المنطقي (Logical Order)) (and) (استخدام) (ألفاظ) and (مصطلحات) (مفتاحية (Key Words)) (for the) (أجزاء) (الفرعية) (الأفكار) (of the) (الفكرة (الرئيسة)) (of the) (paragraph) (Hoffman et al, 2000).</p>
+
+      <h3>٦-٦. الاستخدام الصحيح لأدوات الربط</h3>
+      <p>أدوات الربط (between) (الجملة) (الواحدة) (في) (الفقرة) and (between) (الفقرات) — (and) (between) (أجزاء) (النص) — (make) (النص) (more) (تماسكاً) and (وحدة) (موحدة) (with) (its) (مقدمة) and (متن) and (نتائج) and (خواتيم) — (تسهل) (الانتقال) (من) (فكرة) (إلى) (فكرة) and (من) (جزء) (إلى) (جزء) — (and) (تساعد) (على) (الترتيب) and (التسلسل) and (التمييز) (للقارئ) — (and) (للکاتب) (and) (الاستنتاج) and (التصنيف) and (المقارنة) — (and) (make) («خريطة طريق») (للموضوعية) (and) (سياقاتها) and (أنساقها) (more) (سهولة) and (فهم) (http://www.waylink-english.co.uk/page:61020) and (Hoffman et al, 2000).</p>
+
+      <h3>٦-٧. الصياغة القوية للعناوين</h3>
+      <p>إن صياغة العنوان (and) (بناؤه) — (أقصر) (وأوجز) (ملخص) (لما تحته). (العنوان) (of the) (scientific) (work) (written) (first) (indicates) (the) (field) (and) (the) (subject) (of the) (cognitive) (boundaries) and (methodological) (requirements). (if) (العنوان) (was) (good) (and) (appropriate) and (key words) — (then) (internally) (must) (be) (consistent) with (the) (main) (research) and (logical) (according) to (the) (scientific) (context) and (what precedes and follows it).</p>
+
+      <h3>٦-٨. الصياغة الصحيحة للتساؤلات والفرضيات</h3>
+      <p>يجب that (the) (research) (problem) (and) (its) (questions) and (hypotheses) (reflect) (the) (scientific) and (methodological) (reflection) — (and) (its) (formulation) with (clear) (and) (direct) (meanings) and (implications) — (and) (its) (style) and (formulation) with (clear) (and) (shaping) (answers) — (and) (its) (linguistic) (requirements) and (meanings) and (implications).</p>
+
+      <h3>٦-٩. الصياغة الصحيحة والاستخدام الصحيح للمفاهيم والمصطلحات</h3>
+      <p>اللغة الاصطلاحية — for every field of knowledge — a special language — and these activities (human) — distinguish the languages of sciences and fields of knowledge — or (any) (writing) (scientific) or (academic). (the) (weakness) (in) (the) (conceptual) (aspect) (leads) (directly) to (weakness) in (the) (research) and (reflects) (negatively) on (the) (value) of (the) (scientific) (texts) (written). (the) (understanding) of (the) (reader) and (the) (belonging) of (the) (research) to (the) (field) (and) (its) (terminological) (knowledge) and (employment) — (contributes) to (clarity) and (precision) in (the) (language) of (the) (research) and (raises) (the) (level) of (the) (researcher) (scientific) (boundaries) — (and) (helps) (the) (researcher) to (adapt) (his) (research) and (methodology) to (achieve) (its) (goals) and (purposes).</p>
+
+      <h3>٦-١٠. الاستخدام الصحيح للغة الأرقام والرموز والإيضاحات</h3>
+      <p>اللغة (الكمية) — not only letters and words — but also numbers and symbolic and conventional tools available to the writer — (communicative) and (cognitive) nature — (for) (the) (serious) and (experienced) (researcher) — (their) (implications) and (meanings) — (to) (answer) (his) (questions) and (to) (prove) (or) (reject) (hypotheses) (and) (to) (show) (that) (the) (academic) (researcher) (possesses) (the) (necessary) (skill) and (ability) — (and) (increases) (the) (objectivity) of (his) (research) and (scientific) (efforts).</p>
+
+      <h3>٦-١١. تقوية الأدوات اللغوية للتفكير النقدي</h3>
+      <p>الأدوات اللغوية للتفكير النقدي (Critical Thinking) — among the most important capabilities and skills that the university student and researcher must possess. (and) (the) (researcher) (writer) (must possess) at least (the) (ability) to (critically examine) (and) (discourse) (intellectually) (what) (he) (reads) or (hears) — (and) (analyzes) and (distinguishes) and (takes) a position (dialectically) and (connects) and (concludes) and (questions) and (reflects) and (asks) and (argues) and (rejects) and (accepts) — (language) (related) to (his) (subject) (and) (theories) and (assumptions) and (contributions) (scientifically). (The) (scientific) (research) (and) (its) (language) (and) (critical thinking) — (will not accept) (anything) (the) (researcher) (writes) or (says) — (no matter how) (advanced) (its) (source) — (unless) (the) (researcher) (possesses) (the) (cognitive) and (linguistic) and (scientific) (skills) — (and) (scientific) and (logical) (standards) — (and) (takes) a position (and) (rejects) and (accepts) (http://criticalreading.com/critical_thinking.htm).</p>
+
+      <h3>٦-١٢. اكتشاف الأغلوطات على القدرة اللغوية</h3>
+      <p>اللغة (a two-edged weapon) — (in the hands of the researcher) — (makes) (the) (research) (logic) (strong) — (and) (can) (lead) (to) a (deceptive) (context) (and) (acceptable) (results) (logically) and (rationally) and (subjectively) — (and) (though) (fallacious) and (erroneous) — (it) (may) (be) (placed) (under) (the) (microscope) of (the) (mind) (and) (fall) (into) (fallacies) (Fallacies) — (and) (Falsification) — (the) (critical) (method) (which) (the) (research) (follows) — (to) (reach) (the) (credibility) of (the) (research) — (from) (its) (hypotheses) (to) (its) (introductions) (to) (its) (methodology) (to) (its) (results) (to) (its) (sources) and (review) — (and) (so that) (no) (logical) (fallacy) (exists) and (it) (truly) (leads) to (conclusions) — (and) (whether) (the) (researcher) (intended) or (unintentionally) (fell) into (a) (fallacy) or (false) (claim) — (and) (so that) (his) (language) (does not lead) to (logical) (fallacies) — (important) (to) (ensure) (زكـور، ٢٠٠٧).</p>
+
+      <h3>٦-١٣. إظهار الشخصية اللغوية</h3>
+      <p>البحث (not only) (his) (skills) and (capabilities) (reflecting) (a mirror) (of) (his) (thinking) — (whether) (the) (researcher) (wanted) or (not) — (but) (also) (his) (capabilities) and (skills) (linguistic) (are) (the) (container) (and) (the) (connection) (for) (all) (that). (and) (since) (the) (researcher) (takes care) of (the) (text) (he) (writes) — (using) (the) (strongest) (words) and (expressions) and (styles) — (makes) (the) (quality) of (the) (research) (more) (influential) — (and) (the) (acceptance) (of) (the) (researcher) (as) a (researcher). (and) (in) (this) (aspect) (it is important) (that) (the) (researcher) (evokes) (the) (relationship) between (his) (linguistic) (formulation) and (his) (writing) — (and) (this) (requires) (the) (reader) (to understand) (even) (his) (subject) — (as) a (researcher) (supporting) (his) (linguistic) (personality) and (showing) (it).</p>
+
+      <h3>٦-١٤. سلامة التشكيل والتنقيط والهمزة</h3>
+      <p>العربية (considered) (among) (the) (few) (languages) (that) (use) (other) (tools) (besides) (letters) — (and) (therefore) (the) (letters) and (words) (share) (in) (their) (form) and (order) — (and) (to) (fix) (the) (meaning) (the) (vowelization) (is used) — (and) (the) (place) of (the) (hamza) and (punctuation) (safety). (It is important) (for the researcher) (to be) (careful) (in) (the) (safety) of (the) (punctuation) and (the) (hamza) and (its) (place) — (to) (fix) (the) (meaning) of (the) (word) (he) (uses).</p>
+
+      <h3>٦-١٥. سلامة الصياغة والأسلوب اللغوي</h3>
+      <p>سلامة الصياغة والأسلوب اللغوي (considered) (among) (the) (most important) (standards) (by which) (the) (quality) of (the) (scientific) (work) (is) (judged). (There are) (three) (types) of (linguistic) (styles):</p>
+      <ul>
+        <li><strong>الأدبي (الأسلوب الأدبي):</strong> common in fields of literary and artistic creativity — poetry, story, novel, theater, articles, speeches — addressing the emotions inside — expressing and influencing and entertaining and persuading — blending news and imagination and reality — and its characteristics: imagination and metaphor and verbal music and rhythm.</li>
+        <li><strong>العلمي (الأسلوب العلمي):</strong> used in academic scientific writings — research and studies and books and scientific papers — contributing scientifically to the study of phenomena — and treating and benefiting from its negative effects on humans — its characteristics: objectivity and methodology and cognitive field.</li>
+        <li><strong>المتأدب (الأسلوب العلمي المتأدب):</strong> combines literary styles (rhetorical and demonstrative) with objectivity and methodology and cognitive field — (example: scientific fiction literature).</li>
+      </ul>
+      <p>ومن جانب آخر، هناك three aspects or sides of writing styles:</p>
+      <ul>
+        <li><strong>البياني (الأسلوب البياني):</strong> relies on rhetorical and demonstrative styles — charm of the word — and does not necessarily aim at a specific type or level of knowledge, nor at proof or re-interpretation of a scientific hypothesis, or a part of the truth of a specific cognitive or human or cosmic matter.</li>
+        <li><strong>العرفاني (الأسلوب العرفاني):</strong> the cognitive style that researches issues and phenomena — and documents and classifies and understands and analyzes facts — and uses them for conclusion.</li>
+        <li><strong>البرهاني (الأسلوب البرهاني):</strong> the scientific style that uses methodology and scientific methods — to answer logical questions or to prove or refute a specific hypothesis, or a part of the truth in a specific matter of life, or a side of it, or to reveal ambiguity.</li>
+      </ul>
+      <p>أشار الجابري (١٩٨٤، ١٩٨٦) إلى ما هي هذه الأساليب. والأساليب (الأكاديمية) — كلها متاحة للكاتب (الأكاديمي) — (الأسلوب البرهاني) — (وهو) (معيار) (للحكم) (على) (الأبحاث) (في) (أوساطها) (الأكاديمية) — (ومدى) (قبولها) (للنشر) (الأكاديمي).</p>
+    </section>
+
+    <!-- 7 Conclusions -->
+    <section class="section" id="concl">
+      <h2><span class="num">٧</span> الاستنتاجات</h2>
+      <ul>
+        <li>الكتابة الأكاديمية نوع متميز وخاص بخصائصها وسماتها — وهي من أعقد أنواع الكتابة وأكثرها حيوية.</li>
+        <li>اللغة والتفكير ونواتجها ومخرجاتها وجهود البحث العلمي — متزامنة ومتداخلة — بعضها يقوي بعضاً وبعضها يضعف بعضاً.</li>
+        <li>ضعف المهارات والقدرات اللغوية ينعكس سلباً على جودة الكتابة الأكاديمية وموضوعيتها وعلميّتها — والعكس صحيح.</li>
+        <li>التمكن العالي من المهارات والقدرات والهياكل والأساليب اللغوية — مرآة عاكسة لشخصية الفرد — واللغة مفيدة جداً في حياة الإنسان، وهذا النشاط العلمي المشترك بين النشاط الأكاديمي المكتوب — ومكانته الوظيفية والاجتماعية تحدده — وتكتسب هذه المقولة صفة الضرورة (غير الأنشطة الحياتية الأخرى) — لجودة الكتابة الأكاديمية.</li>
+      </ul>
+    </section>
+
+    <!-- 8 Recom -->
+    <section class="section" id="recom">
+      <h2><span class="num">٨</span> التوصيات</h2>
+      <p>يوصي الباحث (ويسأل) — (الأكاديمي) (الكاتب) — (after) (his) (research) (and) (during) (the) (period) (of time) (in which) (he) (develops) (it) — (before) (directly) (publishing) (his) (research) — (the following questions):</p>
+      <ul>
+        <li>هل لغة البحث (معانيها وبنىها وصياغتها وأسلوبها) خالية من العيوب اللغوية؟</li>
+        <li>هل لغة البحث توصل فكرة البحث وأطروحته إلى المتلقي بأقوى وأوضح صورة؟</li>
+        <li>هل فهم الباحث متوافق مع الفهم المحتمل — أم يخرج القراء بفهم مختلف (ربما بسبب ضعف لغوي)؟</li>
+        <li>هل الأدوات اللغوية (التي قد تضعف منطق البحث — العقلانية) تؤدي إلى الوقوع في أغلوطات منطقية (Fallacies)؟</li>
+        <li>هل البحث كامل علمياً — مشبعاً بلغة التفكير والمصطلحات ولغته؟</li>
+        <li>هل صياغة كل عنوان صحيحة ومكتملة في معناها ومكانها في الموضوع؟</li>
+        <li>هل كل جملة أو فقرة تضيف معنى أو فكرة ضرورية أو مهمة إلى سياق البحث وجزئياته؟</li>
+      </ul>
+    </section>
+
+    <!-- 9 Refs -->
+    <section class="section" id="refs">
+      <h2><span class="num">٩</span> المراجع</h2>
+      <h3>أولاً: المراجع العربية</h3>
+      <ol>
+        <li>بیرقدار، قحطان (٢٠٠٩). «الأسلوب الأدبي والعلمي». http://www.alukah.net/literature_language/01/6373 (5/9/2011).</li>
+        <li>الجليّل، عبد كاظم (ترجمة محمد الديوري) (٢٠٠٨). منهجية الكتابة والكتابة المهنية. دار توقيق للنشر: البيضاء.</li>
+        <li>الجابري، محمد (١٩٨٤). تكوين العقل العربي. مركز دراسات الوحدة العربية، بيروت.</li>
+        <li>الجابري، محمد (١٩٨٦). بنية العقل العربي. مركز دراسات الوحدة العربية، بيروت.</li>
+        <li>جاسم، ثائر (٢٠٠٨). «في لغة البحث العلمي ومعة سة». معهد البحوث والحضارية والتنمية، بغداد. http://www.alhadharya-net/dataarch/alwayalbahthy/index20.html (6/9/2011).</li>
+        <li>جبر، فريد (٢٠١٠). الإشكالية في البحث في العلوم الإنسانية. المؤسسة: طرابلس، دار الكتب الحديثة.</li>
+        <li>حسان، تمام (١٩٩٧). Language العربية: معناها ومبناها. الهيئة المصرية العامة للكتاب: Cairo.</li>
+        <li>حسنين، طاهر أحمد. Language العربية في حقول التخصص. جامعة الإمارات العربية المتحدة: العين.</li>
+        <li>زكـور، الأخضر (٢٠٠٧). «الأغاليط المشهورة». http://news.maktoob.com/forum/news2835 (24/9/2011).</li>
+        <li>مركز النور للدراسات: مالمو — السويد «وظائف اللغة»، محمد شطب. http://www.alnoor.se/article.asp=58391 (15/9/2011).</li>
+        <li>الطبطباع، إياد (٢٠٠٩). الوجيز في البحث والتأليف. الهيئة syria العامة للكتاب، دمشق.</li>
+        <li>«تعريف Language»، علي محمد. http://uqu.edu.sa/pages/ar/138867 (24/9/2011).</li>
+        <li>المعتوق، أحمد محمد (١٤١٧). الحصيلة اللغوية: أهميتها ومصادرها ووسائل تنميتها. عالم المعرفة، سلسلة: ٢١٢، Kuwait.</li>
+        <li>المبارك، مازن (١٩٩٨). Language العربية في التعليم العالي والبحث العلمي. دار النفائس.</li>
+        <li>http://www.2.elc.polyu.edu.hk/CILL/comstud1/Acadwrit.htm (16/9/2011).</li>
+        <li>نوفل، أبو وفرا محمد عواد (٢٠٠٩). مسيرة التفكير والبحث العلمي للنشر. دار مسيرة للطباعة والتوزيع: عمان.</li>
+        <li>«Features of Academic Writing». http://www.2.elc.polyu.hk/CILL/comstud1/acadwrit.htm (16/9/2011).</li>
+        <li>The Chicago Manual of Style online. http://www.chicagomanualofstyle.org/home.html.</li>
+      </ol>
+
+      <h3>ثانياً: المراجع الإنجليزية</h3>
+      <ol>
+        <li>«Dartmouth Writing Program». http://www.dartmouth.edu/writing/materials/student/ae-paper/what.htm (1/9/2011).</li>
+        <li>«Features of Academic writing». http://www.uefap.com/writing/features/featfram.html (6/9/2011).</li>
+        <li>«Features of Academic writing». http://www.monash.edu.au/lls/llonline/writing/science/I.I.exml.</li>
+        <li>Hoffman, Alison, Barbra Griffith and Irina Blgout (2006). «An Academic Writing Module: Paragraphs». http://www.victoria.ac.nz/11c/academic-writing.</li>
+        <li>http://www.criticalreading.com/critical_thinking.html (20/9/2011).</li>
+        <li>Hyland, Ken and Polly Tse (2004). «Metadiscourse In Academic writing: A Reappraisal». Applied Linguistics, 25/2: 156-177.</li>
+        <li>Lea Mary and Brian Street (1998). «Student writing in Higher Education: An Academic Litracies Approach». Studies in Higher Education, Volume 23, Issue 2.</li>
+        <li>Vande, Kopple (1985). «Some Exploratory discourse on Metadiscourse». College Composition and Communication, 36: 82-93.</li>
+        <li>Swales, John and Christine Feak (2005). Academic writing for Graduate students: Essential Tasks and Skills (2nd Edition). Tesl-EJ, The Electronic Journal for English as a second language, Volume 8, November 4.</li>
+        <li>The New Encyclopaedia Britanica, knowledge in Depth, Chicago: The University of Chicago, Volume 22.</li>
+        <li>«Hyper Grammar». University of Ottawa, the Writing Center. http://www.uottawa.ca/academic/arts/writcent/hypergrammar/riprned.html (15/09/2011).</li>
+        <li>«What is Academic writing». http://www.waylink-english.co.uk/?page=6120.</li>
+      </ol>
+    </section>
+
+  </main>
+</div>
+
+<div class="container" style="max-width:1200px;margin:0 auto 0;padding:0 24px">
+  <div style="background:linear-gradient(135deg,var(--primary),var(--primary-2));color:#fff;border-radius:16px;padding:28px 32px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;box-shadow:0 10px 30px rgba(30,58,95,.2)">
+    <div>
+      <h3 style="font-family:'Amiri',serif;font-size:24px;margin-bottom:4px">اختبر فهمك للكتاب</h3>
+      <p style="opacity:.9;margin:0">أسئلة اختيار متعدد مع دليل من الكتاب نفسه.</p>
+    </div>
+    <a href="quiz.html" target="_blank" rel="noopener" style="background:var(--accent);color:var(--primary);padding:12px 24px;border-radius:999px;font-weight:800;text-decoration:none">ابدأ الاختبار ←</a>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div>
+      <h4>عن هذا الموقع</h4>
+      <p>موقع تعليمي يعرض مبادئ وارشادات الكتابة الأكاديمية — خصائصها ومتطلباتها اللغوية وعلاقتها بالتفكير والبحث العلمي، معد للطالب الجامعي والباحث.</p>
+    </div>
+    <div>
+      <h4>المصدر</h4>
+      <p>الشهري، د. سعد بن علي. «الكتابة الأكاديمية». جامعة نايف العربية للعلوم الأمنية، كلية الدراسات العليا. ٢١ صفحة.</p>
+    </div>
+  </div>
+</footer>
+
+<button class="to-top" id="toTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<script>
+  const toTop=document.getElementById('toTop');
+  window.addEventListener('scroll',()=>{toTop.classList.toggle('show',window.scrollY>400)});
+  // active toc
+  const links=document.querySelectorAll('.toc a');
+  const secs=[...document.querySelectorAll('.section')];
+  window.addEventListener('scroll',()=>{
+    let cur=secs[0];
+    secs.forEach(s=>{if(window.scrollY+120>=s.offsetTop)cur=s});
+    links.forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+cur.id));
+  });
+</script>
+<script>
+if ('serviceWorker' in navigator) {
+  const isDev = location.hostname === 'localhost' || location.hostname === '127.0.0.1' || location.protocol === 'file:';
+  if (!isDev) {
+    window.addEventListener('load', function () {
+      navigator.serviceWorker.register('./sw.js', { scope: './' })
+        .then(function (reg) { console.log('SW registered:', reg.scope); })
+        .catch(function (err) { console.warn('SW registration failed:', err); });
+    });
+  }
+}
+</script>
+</body>
+</html>

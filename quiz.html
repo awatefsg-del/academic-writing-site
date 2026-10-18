@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#1e3a5f">
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon-180.png">
+<title>أسئلة عن الكتاب — اختبار متعدد الخيارات</title>
+<meta name="description" content="أسئلة اختيار متعدد حول كتاب «الكتابة الأكاديمية» (د. سعد بن علي الشهري) مع دليل من الكتاب، مؤقت وتصنيف حسب الأقسام.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800;900&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --primary:#1e3a5f;--primary-2:#2c5282;--accent:#c9a227;--accent-2:#e6c34a;
+    --bg:#f4f6fa;--card:#ffffff;--text:#1f2937;--muted:#5b6472;--border:#e2e8f0;
+    --shadow:0 10px 30px rgba(30,58,95,.08);--radius:16px;
+    --ok:#2f855a;--bad:#c53030;--warn:#d69e2e;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:'Tajawal',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.9;font-size:18px;direction:rtl}
+  a{color:var(--primary-2);text-decoration:none}a:hover{color:var(--accent)}
+  .topbar{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--border)}
+  .topbar-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:14px 24px;gap:16px}
+  .brand{display:flex;align-items:center;gap:12px;font-weight:800;font-size:20px;color:var(--primary)}
+  .brand .logo{width:40px;height:40px;border-radius:10px;background:linear-gradient(135deg,var(--primary),var(--primary-2));color:#fff;display:grid;place-items:center;font-size:20px;font-weight:900;box-shadow:0 4px 12px rgba(30,58,95,.3)}
+  .nav{display:flex;gap:6px;flex-wrap:wrap}.nav a{padding:8px 14px;border-radius:999px;font-size:15px;font-weight:500;color:var(--muted);transition:.2s}.nav a:hover,.nav a.active{background:var(--primary);color:#fff}
+  .hero{background:linear-gradient(135deg,var(--primary) 0%,#3a6ea5 60%,#5a8fc4 100%);color:#fff;padding:60px 24px 80px;position:relative;overflow:hidden}
+  .hero::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 80% 20%,rgba(201,162,39,.25),transparent 50%),radial-gradient(circle at 10% 80%,rgba(255,255,255,.08),transparent 40%)}
+  .hero-inner{max-width:900px;margin:0 auto;position:relative;text-align:center}
+  .hero .eyebrow{display:inline-block;padding:6px 16px;border-radius:999px;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);font-size:14px;font-weight:500;margin-bottom:20px}
+  .hero h1{font-family:'Amiri',serif;font-size:44px;font-weight:700;line-height:1.3;margin-bottom:12px;text-shadow:0 2px 12px rgba(0,0,0,.2)}
+  .hero .subtitle{font-size:18px;opacity:.92;max-width:700px;margin:0 auto 24px;line-height:1.8}
+  .hero-wave{position:absolute;bottom:0;left:0;right:0;height:50px}.hero-wave svg{width:100%;height:100%;display:block}
+  .container{max-width:900px;margin:0 auto;padding:32px 24px}
+  .card{background:var(--card);border-radius:var(--radius);padding:28px;box-shadow:var(--shadow);border:1px solid var(--border);margin-bottom:24px}
+  .sec-head{background:linear-gradient(90deg,var(--primary),var(--primary-2));color:#fff;padding:14px 20px;border-radius:12px;margin:24px 0 12px;font-size:20px;font-weight:800;display:flex;align-items:center;gap:10px}
+  .sec-head .badge{background:rgba(255,255,255,.2);color:#fff;font-size:13px;padding:3px 10px;border-radius:999px}
+  .qnum{display:inline-block;background:var(--primary);color:#fff;padding:4px 12px;border-radius:999px;font-size:14px;font-weight:700;margin-bottom:10px}
+  .qtext{font-size:20px;font-weight:600;color:var(--primary);margin-bottom:16px;line-height:1.7}
+  .options{list-style:none;display:grid;gap:10px}
+  .options li{border:2px solid var(--border);border-radius:12px;padding:14px 18px;cursor:pointer;transition:.15s;font-size:17px;background:#fafbfd}
+  .options li:hover{border-color:var(--primary-2);background:#eef3fa}
+  .options li.selected{border-color:var(--primary);background:#e6ecf5}
+  .options li.correct{border-color:var(--ok);background:#e6f4ea;color:#1c4532}
+  .options li.wrong{border-color:var(--bad);background:#fde8e8;color:#742a2a}
+  .options li.disabled{pointer-events:none}
+  .explain{display:none;margin-top:14px;padding:16px 18px;border-radius:12px;background:#fdf8e7;border-right:4px solid var(--accent);font-size:16px;line-height:1.8}
+  .explain.show{display:block}
+  .explain strong{color:var(--primary)}
+  .controls{display:flex;gap:12px;flex-wrap:wrap;margin:24px 0;align-items:center}
+  .btn{padding:12px 24px;border:none;border-radius:999px;font-size:16px;font-weight:700;cursor:pointer;transition:.2s}
+  .btn-primary{background:var(--primary);color:#fff}.btn-primary:hover{background:var(--primary-2)}
+  .btn-ghost{background:#fff;color:var(--primary);border:2px solid var(--primary)}.btn-ghost:hover{background:var(--primary);color:#fff}
+  .btn-warn{background:var(--warn);color:#fff}.btn-warn:hover{background:#b7791f}
+  .scorebox{background:linear-gradient(135deg,var(--primary),var(--primary-2));color:#fff;border-radius:var(--radius);padding:24px;text-align:center;margin:24px 0}
+  .scorebox h2{font-family:'Amiri',serif;font-size:30px;margin-bottom:6px}
+  .scorebox .big{font-size:48px;font-weight:900}
+  .intro{background:var(--card);border-radius:var(--radius);padding:24px;box-shadow:var(--shadow);border:1px solid var(--border);margin-bottom:24px}
+  .intro p{margin-bottom:10px}
+  .timerbar{position:sticky;top:70px;z-index:40;background:#fff;border:1px solid var(--border);border-radius:12px;padding:12px 18px;margin-bottom:16px;display:flex;align-items:center;justify-content:space-between;box-shadow:var(--shadow);flex-wrap:wrap;gap:10px}
+  .timerbar .t{font-size:22px;font-weight:800;color:var(--primary)}
+  .timerbar .t.warn{color:var(--bad)}
+  .timerbar .info{font-size:14px;color:var(--muted)}
+  .cat-score{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px;margin:16px 0}
+  .cat-card{background:#f8fafc;border:1px solid var(--border);border-radius:12px;padding:14px;text-align:center}
+  .cat-card h4{font-size:15px;color:var(--primary);margin-bottom:4px}
+  .cat-card .s{font-size:22px;font-weight:800;color:var(--primary-2)}
+  footer{background:var(--primary);color:#fff;padding:32px 24px;margin-top:40px;text-align:center}
+  footer p{opacity:.85;font-size:15px}
+  @media(max-width:600px){.hero h1{font-size:32px}.qtext{font-size:18px}.timerbar{top:60px}}
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <div class="brand"><div class="logo">ك</div><span>الكتابة الأكاديمية</span></div>
+    <nav class="nav">
+      <a href="index.html">الصفحة الرئيسية</a>
+      <a href="quiz.html" class="active">أسئلة</a>
+      <a href="#result">النتيجة</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="hero-inner">
+    <span class="eyebrow">اختبار متعدد الخيارات</span>
+    <h1>أسئلة عن الكتاب</h1>
+    <p class="subtitle">اختبر فهمك لمبادئ وارشادات «الكتابة الأكاديمية» — مع مؤقت وتصنيف حسب الأقسام، والدليل من الكتاب.</p>
+  </div>
+  <div class="hero-wave"><svg viewBox="0 0 1440 50" preserveAspectRatio="none"><path d="M0,25 C240,50 480,0 720,25 C960,50 1200,0 1440,25 L1440,50 L0,50 Z" fill="#f4f6fa"/></svg></div>
+</section>
+
+<div class="container">
+
+  <div class="intro" id="intro">
+    <p><strong>تعليمات:</strong> اختر الإجابة الصحيحة لكل سؤال، ثم اضغط «تصحيح الإجابات». المؤقت يبدأ تلقائياً ويقيس الزمن (يمكن إيقافه).</p>
+    <p>عدد الأسئلة: <strong>43</strong> — موزعة على 6 أقسام. كل سؤال له إجابة واحدة صحيحة.</p>
+    <div class="controls" style="margin:12px 0 0">
+      <button class="btn btn-warn" id="pauseBtn" onclick="togglePause()">⏸ إيقاف المؤقت</button>
+      <button class="btn btn-ghost" onclick="resetTimer()">↺ إعادة المؤقت</button>
+    </div>
+  </div>
+
+  <div class="timerbar" id="timerbar">
+    <div>
+      <span class="info">الوقت المنقضي</span><br>
+      <span class="t" id="timer">00:00</span>
+    </div>
+    <div class="info" id="progress">0 / 43 مُجابة</div>
+  </div>
+
+  <div id="quiz"></div>
+
+  <div class="controls">
+    <button class="btn btn-primary" onclick="grade()">تصحيح الإجابات</button>
+    <button class="btn btn-ghost" onclick="reset()">إعادة المحاولة</button>
+  </div>
+
+  <div id="result"></div>
+
+</div>
+
+<footer>
+  <p>المصدر: الشهري، د. سعد بن علي. «الكتابة الأكاديمية». جامعة نايف العربية للعلوم الأمنية.</p>
+</footer>
+
+<script>
+const questions = [
+ {cat:"مشكلة البحث",q:"ما هو موضوع بحث د. سعد بن علي الشهري (الكتابة الأكاديمية)؟",
+  opts:["دراسة التفكير النقدي فقط","خصائص الكتابة الأكاديمية ومتطلباتها اللغوية وعلاقتها بالتفكير والبحث العلمي","تاريخ اللغة العربية","علم النفس التربوي"],
+  ans:1,ref:"المقدمة: يتناول البحث خصائص الكتابة الأكاديمية ومتطلباتها اللغوية فحسب، وعلاقتها بالتفكير والبحث العلمي."},
+ {cat:"مشكلة البحث",q:"أي من التساؤلات التالية يطرحه البحث؟",
+  opts:["ما خصائص الكتابة الأكاديمية؟","ما طبيعة العلاقة بين اللغة والتفكير والبحث العلمي؟","ما متطلبات الكتابة الأكاديمية اللغوية؟","جميع ما ذُكر"],
+  ans:3,ref:"مشكلة البحث: (1) ما خصائص الكتابة الأكاديمية؟ (2) ما طبيعة العلاقة بين اللغة والتفكير والبحث العلمي؟ (3) ما متطلبات الكتابة الأكاديمية اللغوية؟"},
+ {cat:"المصطلحات",q:"حسب التعاريف في البحث، «الكتابة الأكاديمية» هي:",
+  opts:["كتابة Science for all people","كتابة Scholars for other scholars","كتابة students for teachers","كتابة journalists for readers"],
+  ans:1,ref:"«Academic writing is writing done by Scholars for other scholars» (Dartmouth, Writing Program)."},
+ {cat:"الخصائص",q:"أي من الخصائص التالية تُعد من خصائص الكتابة الأكاديمية؟",
+  opts:["السخرية والانحياز","الموضوعية (Objectivity)","العاطفية والشخصية","العامية"],
+  ans:1,ref:"القسم 4-1: يجب ألا تحتوي على لغة عاطفية أو شخصية، بل موضوعية."},
+ {cat:"الخصائص",q:"المسؤولية (Responsibility) في الكتابة الأكاديمية تعني:",
+  opts:["تجاهل نقد القارئ","الجدية في القراءة المعمقة، والتوثيق، والمصداقية، وقبول النقد","الكتابة بسرعة","استخدام fewer sources"],
+  ans:1,ref:"القسم 4-2: جدية في القراءة المعمقة، إثبات التوثيق، المصداقية والنزاهة، قبول النقد."},
+ {cat:"الخصائص",q:"أي خاصية تُحذِّر من استخدام عبارات قاطعة/تأكيدية في الأكاديمية؟",
+  opts:["الوضوح (Explicitness)","الحذر (Hedging)","الرسمية (Formality)","القوة (Strength)"],
+  ans:1,ref:"القسم 4-10: لا تستخدم لغة الأكاديمية عبارات ولا كلمات قاطعة ولا تأكيدية ولا ادعائية."},
+ {cat:"الخصائص",q:"«عدم الانحياز (Non-Biased)» يعني:",
+  opts:["الانحياز لقيم شخصية","أساس غير عقلاني — مرفوض في الكتابة الأكاديمية","تشجيع الآراء الذاتية","رفض الأدلة"],
+  ans:1,ref:"القسم 4-12: الانحياز لأساب ذا تية/شخصية/حضارية/قيمية أساس غير عقلاني — مرفوض."},
+ {cat:"الخصائص",q:"أي مما يلي يُعد من أنواع الكتابة الأكاديمية (بحسب البحث)؟",
+  opts:["الرسائل (ماجستير/دكتوراه)","التقارير المختبرية (Lab Reports)","المقالات العلمية والملخصات","جميع ما ذُكر"],
+  ans:3,ref:"القسم 4: رسائل الماجستير والدكتوراه، البحوث، المقالات، التقارير المختبرية، الملخصات..."},
+ {cat:"اللغة والتفكير",q:"العلاقة بين اللغة والتفكير والبحث العلمي (بحسب البحث) هي:",
+  opts:["مستقلة","متلازمة — ضعف/قوة في أي متغير ينعكس على الآخرين","لا علاقة بينها","عكسية"],
+  ans:1,ref:"القسم 5: «هذه الأنشطة (الثلاثة) متلازمة — ... طردية — سبب ونتيجة»."},
+ {cat:"اللغة والتفكير",q:"هل يستطيع الإنسان أن يفكر بدون لغة (بحسب البحث)؟",
+  opts:["نعم، التفكير مستقل عن اللغة","لا، Language هي الوسيلة الرئيسية (مدخلات ومخرجات)","أحياناً","البحث لا يجيب"],
+  ans:1,ref:"القسم 5: «هل يستطيع الإنسان أن يفكر بدون لغة؟... نعم (للأولين) بال否定 (للأخير)» — Language الوسيلة الرئيسية."},
+ {cat:"المتطلبات",q:"المهارات اللغوية الأساسية (4) حسب البحث (بالترتيب المنطقي) هي:",
+  opts:["القراءة، الكتابة، التحدث، الاستماع","التحدث، الاستماع، القراءة، الكتابة","الكتابة، القراءة، التحدث، الاستماع","الاستماع، القراءة، الكتابة، التحدث"],
+  ans:1,ref:"القسم 6-1: «التحدث، الإستماع، القراءة، الكتابة»."},
+ {cat:"المتطلبات",q:"أي أداة من أدوات الربط (Connection) تُستخدم لربط الجمل/الفقرات؟",
+  opts:["أحرف الجر فقط","أدوات الربط (Conjunctions/Transitions)","التنقيط فقط","الأرقام"],
+  ans:1,ref:"القسم 6-6: أدوات الربط (between) (الجملة) (الواحدة)... (make) (النص) (more) (تماسكاً)."},
+ {cat:"المتطلبات",q:"العنوان الجيد (بحسب 6-7) هو:",
+  opts:["طويل ومعقد","أقصر وأوجز ملخص لما تحته","بدون كلمات مفتاحية","غير متسق مع البحث"],
+  ans:1,ref:"6-7: «أقصر وأوجز ملخص لما تحته» + كلمات مفتاحية + consistent."},
+ {cat:"المتطلبات",q:"أي من التصنيفات التالية (للأسلوب) (بحسب 6-15)؟",
+  opts:["الأدبي، العلمي، المتأدب","الشعر، النثر، الدراما","العربي، الإنجليزي، الفرنسي","القديم، الحديث، المعاصر"],
+  ans:0,ref:"6-15: «الأدبي (الأسلوب الأدبي)، العلمي (الأسلوب العلمي)، المتأدب (الأسلوب العلمي المتأدب)»."},
+ {cat:"المتطلبات",q:"«الأسلوب البرهاني» (بحسب 6-15) هو:",
+  opts:["الأسلوب الذي uses methodology and scientific methods to answer logical questions","الأسلوب الأدبي (شعر/رواية)","الأسلوب (البياني) ( rhetoric )","الأسلوب (العرفاني) (cognitive)"],
+  ans:0,ref:"6-15: «البرهاني — scientific style uses methodology and scientific methods — to answer logical questions or prove/refute a hypothesis»."},
+ {cat:"التوصيات",q:"أي من التوصيات (الأسئلة) يطرحها الباحث قبل نشر البحث؟",
+  opts:["هل لغة البحث خالية من العيوب اللغوية؟","هل لغة البحث توصل الفكرة بأقوى وأوضح صورة؟","هل فهم الباحث متوافق مع الفهم المحتمل؟","جميع ما ذُكر"],
+  ans:3,ref:"القسم 8: يطرح الباحث 7 أسئلة، منها: العيوب اللغوية، توصل الفكرة، فهم الباحث..."},
+ {cat:"الخصائص",q:"«الحذر (Hedging)» يُستخدم عندما:",
+  opts:["لا يمكن تأكيد/توثيق/قطع الأمر","يجب إثبات كل شيء","لتجنب التوثيق","لرفض الأدلة"],
+  ans:0,ref:"4-10: «عندما لا يمكن تأكيد أو توثيق أو قطع الأمر...»."},
+ {cat:"الخصائص",q:"«الكثافة والتعقيد (Complexity and Density)» تعني:",
+  opts:["اللغة بسيطة وسهلة","اللغة مكثفة متعددة — مفاهيم ومصطلحات وألفاظ معقدة","اللغة без грамматики","اللغة عاطفية"],
+  ans:1,ref:"4-8: «اللغة الأكاديمية مكثفة ومتعددة — مفاهيم ومصطلحات وألفاظ وتركيبات وجمل معقدة»."},
+ {cat:"الخصائص",q:"«السلامة اللغوية (Faultlessness)» (4-9) تشمل:",
+  opts:["اختيار الألفاظ فقط","سلامة تركيب الجمل والعنوان + قواعد نحوية صحيحة","الطباعة فقط","لا شيء"],
+  ans:1,ref:"4-9: «خالٍ من الأخطاء اللغوية — اختيار الألفاظ، سلامة المعاني والدلالات، سلامة تركيب الجمل والعنوان... قواعد نحوية صحيحة»."},
+ {cat:"الخصائص",q:"«التنظيم (Organization)» (4-13) يسمح للقارئ:",
+  opts:["أن يفهم فكر الكاتب ويتابعه منطقياً","أن يتجاهل المقدمة","أن يقرأ بسرعة","أن يرفض الخاتمة"],
+  ans:0,ref:"4-13: «تسمح للقارئ أن يفهم فكر الكاتب ويتابعه منطقياً»."},
+  {cat:"الخصائص",q:"«الوضوح (Explicitness)» (4-3) يعني:",
+   opts:["غموض النص","صراحة سياق النص وأفكاره وتسلسلها في سياق منطقي وموضوعي محكم","تجنب الأدوات اللغوية","الاختصار المفرط"],
+   ans:1,ref:"4-3: صريحة — سياق النص وأفكاره وتسلسلها، منطقياً وواضحة."},
+  {cat:"الخصائص",q:"«الدقة (Precision)» (4-4) تتطلب:",
+   opts:["العمومية","دقة وکاملة في عرض التواريخ والأرقام والحقائق والنظريات","الاختصار","الانفعال"],
+   ans:1,ref:"4-4: يجب أن تكون دقيقة وکاملة في عرض التواريخ والأرقام والحقائق والنظريات."},
+  {cat:"الخصائص",q:"«العقلانية (Rationality)» (4-5) قائمة على:",
+   opts:["الانفعال","المنطق العقلاني وإثبات الحجة وتقديم البراهين والإقناع","السخرية","العمومية"],
+   ans:1,ref:"4-5: قائمة على المنطق العقلاني، وإثبات الحجة وتقديم البراهين والإقناع."},
+  {cat:"الخصائص",q:"«الرسمية (Formality)» (4-6) تطلب:",
+   opts:["العامية والهجات","أسلوب لغوي «لا» للأنا ولا للتعظيم للذات ولا للهجات ولا للكلمات العامية","الاختصار","الانفعال"],
+   ans:1,ref:"4-6: «لا» للأنا، ولا للتعظيم للذات، ولا للهجات ولا للكلمات العامية."},
+  {cat:"الخصائص",q:"«القوة (Strength)» (4-7) تدل على:",
+   opts:["ضعف التفكير","عمق التفكير وقوة اللغة ورجاحة الفكر والثقافة","الاختصار","العمومية"],
+   ans:1,ref:"4-7: قوة النص الأكاديمي تدل على عمق التفكير وقوة اللغة ورجاحة الفكر والثقافة."},
+  {cat:"الخصائص",q:"«عدم السخرية (Non-Sarcastic)» (4-11) means:",
+   opts:["السخرية مقبولة","الكتابة الأكاديمية ليست مقبولة بالسخرية من الأشخاص أو أعمالهم","الاختصار","العمومية"],
+   ans:1,ref:"4-11: ليست مقبولة بالسخرية من الأشخاص أو أعمالهم أو مواقفهم."},
+  {cat:"المصطلحات",q:"البحث العلمي (3-3) هو:",
+   opts:["جهد عشوائي","جهد منظم وعملية منهجية بخطوات وطرق علمية محددة","رأي شخصي","سرد"],
+   ans:1,ref:"3-3: جهد منظم وعملية منهجية بخطوات وطرق علمية محددة."},
+  {cat:"المصطلحات",q:"التفكير (3-4) هو:",
+   opts:["الوظيفة الرئيسية للعقل","الذاكرة فقط","الانفعال","السرد"],
+   ans:0,ref:"3-4: التفكير هو الوظيفة الرئيسية للعقل."},
+  {cat:"اللغة والتفكير",q:"اللغة (بحسب 5) هي:",
+   opts:["أداة ثانوية","الوسيلة الرئيسية (مدخلات ومخرجات) للتفكير للبحث العلمي","لا علاقة","ذاكرة"],
+   ans:1,ref:"5: هي الوسيلة الرئيسية (مدخلاته ومخرجاته) للتفكير (النشاط الفكري الأساسي)."},
+  {cat:"المتطلبات",q:"الاستخدام الصحيح للألفاظ (6-2) مهم لأن:",
+   opts:["اختيار الألفاظ عامل مهم في جودة النص","لا تأثير","للزينة فقط","للاختصار"],
+   ans:0,ref:"6-2: اختيار الألفاظ عامل مهم في جودة النص المكتوب (لقراءة على)."},
+  {cat:"المتطلبات",q:"«التأكد من سلامة المعاني والدلالات» (6-3) يشمل:",
+   opts:["معنى لغوي","معنى اصطلاحي","معنى إجرائي وسياق","جميع ما ذُكر"],
+   ans:3,ref:"6-3: معنى لغوي، اصطلاحي، إجرائي، سياق."},
+  {cat:"المتطلبات",q:"«التراكيب الصحيحة للجمل» (6-4) تعني:",
+   opts:["أي ترتيب","«جملة مفيدة» صحيحاً ترکیباً في جملة مرکبة","الاختصار","العمومية"],
+   ans:1,ref:"6-4: «جملة مفيدة» — becomes صحيحاً ترکیباً — في جملة مرکبة."},
+  {cat:"المتطلبات",q:"«البناء الصحيح للفقرات» (6-5) (Topic Sentence) هي:",
+   opts:["جملة اختتامية","جملة رئيسة تحمل الفكرة الرئيسية","جملة عشوائية","جملة سؤال"],
+   ans:1,ref:"6-5: (Topic Sentence) — تحمل الفكرة (الرئيسة) (Main Idea)."},
+  {cat:"المتطلبات",q:"«الصياغة القوية للعناوين» (6-7) تطلب:",
+   opts:["عنوان طويل","أقصر وأوجز ملخص لما تحته + كلمات مفتاحية + consistency","عنوان عام","عنوان بدون كلمات"],
+   ans:1,ref:"6-7: أقصر وأوجز ملخص + كلمات مفتاحية + consistent."},
+  {cat:"المتطلبات",q:"«الصياغة الصحيحة للتساؤلات والفرضيات» (6-8) تتطلب:",
+   opts:["غموض","صياغة واضحة ومباشرة + معاني ودلالات","اختصار","عمومية"],
+   ans:1,ref:"6-8: صياغة with clear and direct meanings and implications."},
+  {cat:"المتطلبات",q:"«الاستخدام الصحيح للغة الأرقام والرموز» (6-10) helps:",
+   opts:["إ geschäft","الإجابة عن تساؤلات واثبات/رفض فرضيات","الاختصار","العمومية"],
+   ans:1,ref:"6-10: to answer questions and prove/reject hypotheses."},
+  {cat:"المتطلبات",q:"«تقوية الأدوات اللغوية للتفكير النقدي» (6-11) يتطلب:",
+   opts:["قبول كل شيء","فحص نقدي وتمحيص وربط واستنتاج وسؤال","الاختصار","العمومية"],
+   ans:1,ref:"6-11: critical examination, connect, conclude, question, reflect..."},
+  {cat:"المتطلبات",q:"«اكتشاف الأغلوطات» (6-12) (Fallacies) means:",
+   opts:["أخطاء منطقية","أخطاء إملائية","أخطاء نحوية","أخطاء طباعية"],
+   ans:0,ref:"6-12: (Fallacies) — logical fallacies."},
+  {cat:"المتطلبات",q:"«إظهار الشخصية اللغوية» (6-13) (mirror) means:",
+   opts:["اللغة مرآة عاكسة لشخصية الفرد","لا علاقة","ذاكرة","سرد"],
+   ans:0,ref:"6-13: اللغة مرآة عاكسة لشخصية الفرد."},
+  {cat:"المتطلبات",q:"«سلامة التشكيل والتنقيط والهمزة» (6-14) مهم لأن:",
+   opts:["تزيين","لتحديد معنى اللفظ","اختصار","عمومية"],
+   ans:1,ref:"6-14: to fix the meaning of the word used."},
+  {cat:"المتطلبات",q:"«سلامة الصياغة والأسلوب اللغوي» (6-15) among standards:",
+   opts:["الأدبي","العلمي","المتأدب","جميع ما ذُكر"],
+   ans:3,ref:"6-15: three styles: أدبي، علمي، متأدب."},
+  {cat:"المتطلبات",q:"«الأسلوب العرفاني» (6-15) (cognitive) means:",
+   opts:["الأسلوب الذي researches issues and phenomena — documents/classifies/understands/analyzes facts","الأسلوب الأدبي","الأسلوب (البياني)","الأسلوب (البرهاني)"],
+   ans:0,ref:"6-15: العرفاني — cognitive style researches issues/phenomena, documents/classifies/understands/analyzes facts."},
+  {cat:"الاستنتاجات",q:"من استنتاجات البحث:",
+   opts:["الكتابة الأكاديمية نوع متميز وخاص","اللغة والتفكير متزامنة ومتداخلة","ضعف المهارات اللغوية ينعكس سلباً","جميع ما ذُكر"],
+   ans:3,ref:"القسم 7: 4 استنتاجات — جميعها صحيحة."}
+];
+
+let selected = new Array(questions.length).fill(null);
+let graded = false;
+let seconds = 0, timerId = null, paused = false;
+
+function fmt(s){const m=Math.floor(s/60);const r=s%60;return String(m).padStart(2,'0')+':'+String(r).padStart(2,'0');}
+function startTimer(){if(timerId) return; timerId=setInterval(()=>{if(!paused){seconds++;document.getElementById('timer').textContent=fmt(seconds);}},1000);}
+function stopTimer(){if(timerId){clearInterval(timerId);timerId=null;}}
+function togglePause(){paused=!paused;const b=document.getElementById('pauseBtn');b.textContent=paused?'▶ استئناف المؤقت':'⏸ إيقاف المؤقت';b.className=paused?'btn btn-primary':'btn btn-warn';}
+function resetTimer(){seconds=0;paused=false;document.getElementById('timer').textContent='00:00';document.getElementById('pauseBtn').textContent='⏸ إيقاف المؤقت';document.getElementById('pauseBtn').className='btn btn-warn';startTimer();}
+
+const categories = [...new Set(questions.map(q=>q.cat))];
+
+function render(){
+  const box = document.getElementById('quiz');
+  box.innerHTML = categories.map(cat=>{
+    const qs = questions.map((q,i)=>({...q,_i:i})).filter(q=>q.cat===cat);
+    return `<div class="sec-head">${cat} <span class="badge">${qs.length} أسئلة</span></div>` +
+      qs.map(q=>`
+        <div class="card" id="q${q._i}">
+          <span class="qnum">سؤال ${q._i+1} من ${questions.length}</span>
+          <div class="qtext">${q.q}</div>
+          <ul class="options" data-i="${q._i}">
+            ${q.opts.map((o,j)=>`<li data-j="${j}" onclick="pick(${q._i},${j})">${o}</li>`).join('')}
+          </ul>
+          <div class="explain" id="exp${q._i}"><strong>الدليل من الكتاب:</strong> ${q.ref}</div>
+        </div>
+      `).join('');
+  }).join('');
+  updateProgress();
+}
+
+function pick(i,j){
+  if(graded) return;
+  selected[i]=j;
+  const ul = document.querySelector(`#q${i} .options`);
+  ul.querySelectorAll('li').forEach((li,k)=>li.classList.toggle('selected',k===j));
+  updateProgress();
+}
+
+function updateProgress(){
+  const answered = selected.filter(v=>v!==null).length;
+  document.getElementById('progress').textContent = `${answered} / ${questions.length} مُجابة`;
+}
+
+function grade(){
+  if(graded) return;
+  graded=true; stopTimer();
+  let score=0;
+  const catScores={};
+  categories.forEach(c=>catScores[c]={ok:0,tot:0});
+  questions.forEach((q,i)=>{
+    const lis = document.querySelectorAll(`#q${i} .options li`);
+    lis.forEach(li=>li.classList.add('disabled'));
+    catScores[q.cat].tot++;
+    const sel = selected[i];
+    if(sel===q.ans){ score++; catScores[q.cat].ok++; lis[sel].classList.add('correct'); }
+    else {
+      if(sel!==null) lis[sel].classList.add('wrong');
+      lis[q.ans].classList.add('correct');
+    }
+    document.getElementById('exp'+i).classList.add('show');
+  });
+  const pct = Math.round(score/questions.length*100);
+  let catHtml = categories.map(c=>{
+    const s=catScores[c]; const p=Math.round(s.ok/s.tot*100);
+    return `<div class="cat-card"><h4>${c}</h4><div class="s">${s.ok}/${s.tot}</div><div style="font-size:13px;color:var(--muted)">${p}%</div></div>`;
+  }).join('');
+  document.getElementById('result').innerHTML = `
+    <div class="scorebox">
+      <h2>النتيجة</h2>
+      <div class="big">${score} / ${questions.length}</div>
+      <p>${pct}% — ${pct>=80?'ممتاز!':pct>=60?'جيد':'تحتاج مراجعة'} — الوقت: ${fmt(seconds)}</p>
+    </div>
+    <h3 style="color:var(--primary);margin:12px 0">النتائج حسب الأقسام</h3>
+    <div class="cat-score">${catHtml}</div>`;
+  document.getElementById('result').scrollIntoView({behavior:'smooth'});
+}
+
+function reset(){
+  selected = new Array(questions.length).fill(null);
+  graded=false; seconds=0; paused=false;
+  document.getElementById('timer').textContent='00:00';
+  document.getElementById('pauseBtn').textContent='⏸ إيقاف المؤقت';
+  document.getElementById('pauseBtn').className='btn btn-warn';
+  document.getElementById('result').innerHTML='';
+  render();
+  startTimer();
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+render();
+startTimer();
+</script>
+<script>
+if ('serviceWorker' in navigator) {
+  const isDev = location.hostname === 'localhost' || location.hostname === '127.0.0.1' || location.protocol === 'file:';
+  if (!isDev) {
+    window.addEventListener('load', function () {
+      navigator.serviceWorker.register('./sw.js', { scope: './' })
+        .then(function (reg) { console.log('SW registered:', reg.scope); })
+        .catch(function (err) { console.warn('SW registration failed:', err); });
+    });
+  }
+}
+</script>
+</body>
+</html>
